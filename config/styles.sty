@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\usepackage{titlesec}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{color,soul}
+\usepackage{amsmath,amsfonts,amssymb,amsthm, bm}
+\usepackage{contour}
+\usepackage{ulem}
+\usepackage{keystroke}
+\usepackage{listings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Colores
+\definecolor{primaryHTML}{HTML}{076081} 
+\definecolor{tablesHTML}{HTML}{076081}
+\definecolor{tablesHTML2}{HTML}{A8A7A7}
+\definecolor{URLcolor}{HTML}{076081}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tipografía del documento
+\renewcommand{\familydefault}{\sfdefault}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conceptos
+\newcommand{\itemTarget}[1]{\item[#1]\hypertarget{Concept:#1} \hfill\\}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Subrayado
+\newcommand\ulColor{
+    \noindent
+    \bgroup\markoverwith{\textcolor{primaryHTML}{\rule[-0.8ex]{2pt}{0.4pt}}}\ULon
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tipografia con color
+\newcommand{\tbfWhite}[1]{\textcolor{white}{\textbf{#1}}}
+\newcommand{\textbfColor}[1]{\textcolor{primaryHTML}{\textbf{#1}}}
+\newcommand{\textitColor}[1]{\textcolor{primaryHTML}{\textit{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Encabezado y pie de pagina
+\pagestyle{fancy}
+\fancyhf{} 
+\lhead[\thepage]{\leftmark}
+\rhead{\includegraphics[height=25pt]{src/doc/ESCOM.png}}
+\cfoot{\thepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Capítulos y secciones
+\titleformat{\chapter}[frame]
+    {\LARGE\bfseries\sffamily\color{primaryHTML}}
+    {\filright\ \chaptertitlename\ \thechapter\ }{20pt}{\Huge}
+\titleformat*{\section}{\Large\sffamily\color{primaryHTML}}
+\titleformat*{\subsection}{\Large\sffamily\color{primaryHTML}}
+\titleformat*{\subsubsection}{\Large\sffamily\color{primaryHTML}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryHTML,
+    filecolor=magenta,      
+    urlcolor=URLcolor,
+    citecolor=primaryHTML,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Boton
+\newcommand{\btn}[1]{\keystroke{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Items
+\setlist[itemize]{label=\textcolor{primaryHTML}{\textbullet},noitemsep}
+\setlist[enumerate]{label=\textcolor{primaryHTML}{\bfseries\arabic*.},noitemsep}
+\newenvironment{myEnumerate}[2]{
+    \begin{enumerate}[
+        label=\textbfColor{#1\theenumi.},
+        noitemsep,
+        leftmargin=#2cm
+    ]
+}{\end{enumerate}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Tablas
+\newcommand{\myLabel}[1]{\caption{#1}\label{tab:#1}}
+\newcommand{\ct}[1]{\makecell[c]{#1}}
+\newcommand{\tl}[1]{\makecell[tl]{#1}}
+\newcommand{\myRow}[1]{#1\\\hline}
+\newcommand{\myHead}[1]{\rowcolor{tablesHTML}#1\\\hline}
+\newcommand{\myHeads}[2]{
+    \rowcolor{tablesHTML}#1\\\hline
+    \rowcolor{tablesHTML2}#2\\\hline
+}
+\newenvironment{myTable}[2]{
+    \small
+    \def\arraystretch{1.3}
+    \par\begin{longtable}{#1}\hline
+    #2
+    \endhead
+}{\end{longtable}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Figuras
+\newcommand{\myFigure}[3]{
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=#1\textwidth]{src/img/#2}
+    \caption{#3}
+    \label{fig:#3}
+    \end{figure}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Salto de linea
+\newcommand{\nl}{\\\\}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
