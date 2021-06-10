@@ -1,1 +1,1 @@
-# latex-configuration
+# My Latex Configuration
