@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
+\usepackage{longtable}
+\usepackage{makecell}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Requerimientos
+\newenvironment{requerimientos}[1]{
+    \begin{myEnumerate}{#1-}{3}
+}{
+    \end{myEnumerate}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Casos de uso
+\newcommand{\UCitem}[2]{{\bf {#1:}} & {#2} \\ \hline}
+\newenvironment{UseCase}[4][encabezadoCU]{
+    \newpage
+    \noindent\hypertarget{#2}{\includegraphics[width=1.0\textwidth]{src/doc/#1}}
+    \section{#2 #3}
+    \subsection*{Descripción} #4
+    \subsection*{Atributos}
+    \par\begin{longtable}{| p{.25\textwidth} | p{.70\textwidth} |}
+	\arrayrulecolor{white}
+	\rowcolor{tablesHTML}
+	\UCitem{\bf\color{white}Caso de Uso}{\bf\color{white}#2 #3}
+	\endhead
+	\arrayrulecolor{tablesHTML2}
+}{
+    \end{longtable}
+    \subsection*{Trayectorias del Caso de Uso}
+}
+\newcommand\Error{\includegraphics[height=11pt]{src/doc/iconMsjError.png}}
+\newcommand\Msj{\includegraphics[height=11pt]{src/doc/iconMsj.png}}
+\newcommand{\msj}[1][\Msj]{\item #1 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Trayectorias
+\newcommand\UCactor{\includegraphics[height=14pt]{src/doc/iconActor.png}}
+\newcommand\UCsist{\includegraphics[height=11pt]{src/doc/iconSystem.png}}
+\newcommand\UCempty{- -}
+\newcommand{\UCpaso}[1][\UCsist]{\item #1 }
+\newenvironment{UCtrayectoria}{
+	\bigskip\noindent {\large {\bf Trayectoria principal:}}
+	\begin{enumerate}\addtolength{\itemsep}{0.1\baselineskip}
+}{
+	\item[-] - - {\ulColor{Fin del caso de uso}}. 
+	\end{enumerate}
+}
+\newenvironment{UCtrayectoriaA}[2] {
+	\bigskip\noindent {\large {\bf Trayectoria alternativa {#1}:}}\\
+	{\small{\bf Condición:} {#2}}
+	\begin{myEnumerate}{#1}{1.5}\addtolength{\itemsep}{0.1\baselineskip}{}
+}{
+	\item[- -] - - {\ulColor{Fin de la trayectoria alternativa}}.
+	\end{myEnumerate}
+	\renewcommand{\labelenumi}{\theenumi}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Interfaces
+\newcommand{\UI}[4]{
+    \hypertarget{IU-#1}{}
+    \subsection{IU-#1: #2}
+    #3
+    \begin{figure}[H]
+	    \centering
+        \includegraphics[width=#4\textwidth]
+        {src/img/pantallas/IU-#1}
+        \caption{IU-#1: #2}
+        \label{fig:IU-#1: #2}
+    \end{figure}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Interfaces desarrollo
+\newcommand{\UID}[3]{
+    \hypertarget{IUD-#1}{}
+    \subsection{IUD-#1: #2}
+    #3
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Glosario
+\newcommand{\defRow}[2] {
+    \subsection*{#1} \hypertarget{Glo:#1}
+    #2
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
